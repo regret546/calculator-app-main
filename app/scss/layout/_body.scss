@@ -1,4 +1,7 @@
 body {
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
   font-family: var(--ff--primary);
   font-weight: var(--fw--bold2);
   font-size: 20px;

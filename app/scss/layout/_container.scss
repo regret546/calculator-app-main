@@ -1,4 +1,10 @@
 .container {
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: min-content;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
   .header__section {
     display: flex;
     justify-content: space-between;
@@ -25,6 +31,7 @@
           font-size: 12px;
         }
         &_buttons {
+          cursor: pointer;
           display: flex;
           align-items: center;
           width: 75px;
@@ -33,12 +40,87 @@
           border-radius: 1rem;
           .circle {
             margin-top: -1px;
-            margin-left: 5px;
+            margin-left: 6px;
             width: 18px;
             height: 18px;
             border-radius: 50px;
             background-color: var(--th1--clr--keytoggle);
+            transition: transform 300ms ease-in-out;
           }
+
+          /*  .circle {
+              transform: translateX(120%);
+            } */
+        }
+      }
+    }
+  }
+
+  .app__section {
+    display: grid;
+    grid-template-rows: min-content;
+    gap: 1rem;
+    &_output,
+    &_functions {
+      height: min-content;
+      max-width: 450px;
+      background-color: var(--th1--clr--screenbg);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+    }
+    &_output {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      height: 80px;
+
+      p {
+        margin-top: 5px;
+        font-size: 2.5rem;
+      }
+    }
+    &_functions {
+      ul {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        flex-direction: row;
+        li {
+          cursor: pointer;
+          height: 60px;
+          display: grid;
+          place-items: center;
+          flex-grow: 1;
+          font-size: 2.5rem;
+          color: var(--th1--clr--text1);
+          border-radius: 0.5rem;
+          display: grid;
+          width: 20%;
+          /* mobile size 351 below should have width of 15% */
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+
+        .keybg1 {
+          align-items: center;
+          font-size: 1.2rem;
+          color: var(--th1--clr--text2);
+          background-color: var(--th1--clr--keybg1);
+          box-shadow: 0px 3px var(--th1--clr--keyshadow1);
+        }
+        .keybg2 {
+          background-color: var(--th1--clr--keybg2);
+          box-shadow: 0px 3px var(--th1--clr--keyshadow3);
+        }
+        .keybg3 {
+          font-size: 1.2rem;
+          background-color: var(--th1--clr--keytoggle);
+          box-shadow: 0px 3px var(--th1--clr--keyshadow2);
+          color: var(--th1--clr--text2);
         }
       }
     }
