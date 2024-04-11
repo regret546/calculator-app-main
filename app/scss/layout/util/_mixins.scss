@@ -1,0 +1,45 @@
+@mixin th1 {
+  background-color: var(--th1--clr--mainbg);
+}
+
+@mixin th2 {
+  background-color: var(--th2--clr--mainbg);
+  color: var(--th2--clr--text2);
+
+  .header__section_theme_toggle_buttons {
+    background-color: var(--th2--clr--togglebg);
+  }
+  .circle {
+    background-color: var(--th2--clr--keytoggle);
+  }
+  .app__section_output,
+  .app__section_functions {
+    background-color: var(--th2--clr--screenbg);
+  }
+  .app__section_functions {
+    ul {
+      li {
+        color: var(--th2--clr--text1);
+      }
+
+      .keybg1 {
+        color: var(--th2--clr--text2);
+        background-color: var(--th2--clr--keybg1);
+        box-shadow: 0px 3px var(--th2--clr--keyshadow1);
+      }
+      .keybg2 {
+        background-color: var(--th2--clr--keybg2);
+        box-shadow: 0px 3px var(--th2--clr--keyshadow3);
+      }
+      .keybg3 {
+        background-color: var(--th2--clr--keytoggle);
+        box-shadow: 0px 3px var(--th2--clr--keyshadow2);
+        color: var(--th2--clr--text2);
+      }
+    }
+  }
+}
+
+@mixin th3 {
+  background-color: var(--th3--clr--mainbg);
+}

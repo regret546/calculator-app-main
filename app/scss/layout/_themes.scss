@@ -1,0 +1,9 @@
+@use "../layout/util/" as u;
+
+.main {
+  @include u.th2;
+}
+
+.theme3 {
+  @include u.th3;
+}

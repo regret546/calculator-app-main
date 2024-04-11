@@ -1,4 +1,5 @@
 :root {
+  /* Theme 1 */
   /* #### Backgrounds */
   --th1--clr--mainbg: hsl(222, 26%, 31%);
   --th1--clr--togglebg: hsl(223, 31%, 20%);
@@ -15,4 +16,41 @@
   /* #### Text */
   --th1--clr--text1: hsl(221, 14%, 31%);
   --th1--clr--text2: hsl(0, 0%, 100%);
+
+  /* Theme 2 */
+  /* #### Backgrounds */
+  --th2--clr--mainbg: hsl(0, 0%, 90%);
+  --th2--clr--togglebg: hsl(0, 5%, 81%);
+  --th2--clr--screenbg: hsl(0, 0%, 93%);
+
+  /* #### Keys */
+  --th2--clr--keybg1: hsl(185, 42%, 37%);
+  --th2--clr--keyshadow1: hsl(185, 58%, 25%);
+  --th2--clr--keytoggle: hsl(25, 98%, 40%);
+  --th2--clr--keyshadow2: hsl(25, 99%, 27%);
+  --th2--clr--keybg2: hsl(45, 7%, 89%);
+  --th2--clr--keyshadow3: hsl(35, 11%, 61%);
+
+  /* #### Text */
+  --th2--clr--text1: hsl(60, 10%, 19%);
+  --th2--clr--text2: hsl(0, 0%, 100%);
+
+  /* Theme 3 */
+  /* #### Backgrounds */
+
+  --th3--clr--mainbg: hsl(268, 75%, 9%);
+  --th3--clr--togglebg: hsl(268, 71%, 12%);
+
+  /* #### Keys */
+  --th3--clr--keybg1: hsl(281, 89%, 26%);
+  --th3--clr--keyshadow1: hsl(285, 91%, 52%);
+  --th3--clr--keytoggle: hsl(176, 100%, 44%);
+  --th3--clr--keyshadow2: hsl(177, 92%, 70%);
+  --th3--clr--keybg2: hsl(268, 47%, 21%);
+  --th3--clr--keyshadow3: hsl(290, 70%, 36%);
+
+  /* #### Text */
+  --th3--clr--text1: hsl(60, 10%, 19%);
+  --th3--clr--text2: hsl(0, 0%, 100%);
+  --th3--clr--text3: hsl(198, 20%, 13%);
 }

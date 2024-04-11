@@ -9,15 +9,21 @@ buttonToggle.addEventListener("click", function (e) {
   } else {
     currentButton += 1;
   }
+
   switch (currentButton) {
     case 1:
       circle.style.transform = "translateX(0%)";
+      document.body.className = "";
       break;
     case 2:
       circle.style.transform = "translateX(120%)";
+      document.body.classList.add("main");
+      document.body.classList.add("theme2");
       break;
     case 3:
       circle.style.transform = "translateX(260%)";
+      document.body.classList.remove("theme2");
+      document.body.classList.add("theme3");
       break;
   }
 });
