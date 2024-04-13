@@ -129,9 +129,9 @@ ul {
   --th3--clr--keybg2: hsl(268, 47%, 21%);
   --th3--clr--keyshadow3: hsl(290, 70%, 36%);
   /* #### Text */
-  --th3--clr--text1: hsl(60, 10%, 19%);
-  --th3--clr--text2: hsl(0, 0%, 100%);
-  --th3--clr--text3: hsl(198, 20%, 13%);
+  --th3--clr--text1: hsl(52, 100%, 62%);
+  --th3--clr--text2: hsl(198, 20%, 13%);
+  --th3--clr--text3: hsl(0, 0%, 100%);
 }
 
 .container {
@@ -191,6 +191,9 @@ ul {
   background-color: var(--th1--clr--keytoggle);
   transition: transform 300ms ease-in-out;
 }
+.container .header__section_theme_toggle_buttons .circle:hover {
+  filter: brightness(190%);
+}
 .container .app__section {
   display: grid;
   grid-template-rows: min-content;
@@ -235,7 +238,7 @@ ul {
   /* mobile size 351 below should have width of 15% */
 }
 .container .app__section_functions ul li:hover {
-  opacity: 0.8;
+  filter: brightness(140%);
 }
 .container .app__section_functions ul .keybg1 {
   align-items: center;
@@ -268,17 +271,22 @@ body {
 
 .main {
   background-color: var(--th2--clr--mainbg);
-  color: var(--th2--clr--text2);
+  color: var(--th2--clr--text1);
 }
 .main .header__section_theme_toggle_buttons {
   background-color: var(--th2--clr--togglebg);
 }
+.main .header__section_theme_toggle_buttons .circle {
+  background-color: var(--th2--clr--keytoggle);
+}
 .main .circle {
   background-color: var(--th2--clr--keytoggle);
 }
-.main .app__section_output,
-.main .app__section_functions {
+.main .app__section_output {
   background-color: var(--th2--clr--screenbg);
+}
+.main .app__section_functions {
+  background-color: var(--th2--clr--togglebg);
 }
 .main .app__section_functions ul li {
   color: var(--th2--clr--text1);
@@ -300,4 +308,41 @@ body {
 
 .theme3 {
   background-color: var(--th3--clr--mainbg);
+  color: var(--th3--clr--text1);
+}
+.theme3 .header__section_theme_toggle_buttons {
+  background-color: var(--th3--clr--togglebg);
+}
+.theme3 .header__section_theme_toggle_buttons .circle {
+  background-color: var(--th3--clr--keytoggle);
+}
+.theme3 .app__section_output {
+  background-color: var(--th3--clr--togglebg);
+}
+.theme3 .app__section_functions {
+  background-color: var(--th3--clr--togglebg);
+}
+.theme3 .app__section_functions ul li {
+  color: var(--th2--clr--text1);
+}
+.theme3 .app__section_functions ul .keybg1 {
+  color: var(--th3--clr--text3);
+  background-color: var(--th3--clr--keybg1);
+  box-shadow: 0px 3px var(--th3--clr--keyshadow1);
+}
+.theme3 .app__section_functions ul .keybg2 {
+  color: var(--th3--clr--text1);
+  background-color: var(--th3--clr--keybg2);
+  box-shadow: 0px 3px var(--th3--clr--keyshadow3);
+}
+.theme3 .app__section_functions ul .keybg2:hover {
+  filter: brightness(190%);
+}
+.theme3 .app__section_functions ul .keybg3 {
+  background-color: var(--th3--clr--keytoggle);
+  box-shadow: 0px 3px var(--th3--clr--keyshadow2);
+  color: var(--th3--clr--text2);
+}
+.theme3 .app__section_functions ul .keybg3:hover {
+  filter: brightness(120%) saturate(120%);
 }/*# sourceMappingURL=style.css.map */

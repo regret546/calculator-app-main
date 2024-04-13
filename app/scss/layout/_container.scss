@@ -46,6 +46,10 @@
             border-radius: 50px;
             background-color: var(--th1--clr--keytoggle);
             transition: transform 300ms ease-in-out;
+
+            &:hover {
+              filter: brightness(190%);
+            }
           }
 
           /*  .circle {
@@ -101,7 +105,7 @@
           /* mobile size 351 below should have width of 15% */
 
           &:hover {
-            opacity: 0.8;
+            filter: brightness(140%);
           }
         }
 

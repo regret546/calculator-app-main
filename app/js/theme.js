@@ -1,3 +1,24 @@
+const outputNums = document.querySelector("#outputNums");
+
+function addPunctuation(number) {
+  var array = number.toString().split("");
+  var output = "";
+  var first = true;
+  for (var i = array.length - 1; i >= 0; i--) {
+    if ((array.length - i - 1) % 3 === 0) {
+      if (first) {
+        first = false;
+      } else {
+        output = "," + output;
+      }
+    }
+    output = array[i] + output;
+  }
+  outputNums.innerText = output;
+}
+
+addPunctuation(outputNums.innerText);
+
 let currentButton = 1;
 const buttonToggle = document.querySelector("#toggle-buttons");
 
