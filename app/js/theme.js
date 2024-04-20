@@ -4,7 +4,7 @@ function addPunctuation(number) {
   var array = number.toString().split("");
   var output = "";
   var first = true;
-  for (var i = array.length - 1; i >= 0; i--) {
+  for (let i = array.length - 1; i >= 0; i--) {
     if ((array.length - i - 1) % 3 === 0) {
       if (first) {
         first = false;
