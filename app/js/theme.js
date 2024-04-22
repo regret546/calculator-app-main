@@ -1,10 +1,10 @@
 const outputNums = document.querySelector("#outputNums");
 
-function addPunctuation(number) {
+/* function addPunctuation(number) {
   const num = parseFloat(number);
   const numFormatted = num.toLocaleString("en-US");
   outputNums.innerText = numFormatted.toString();
-}
+} */
 
 let currentButton = 1;
 const buttonToggle = document.querySelector("#toggle-buttons");

@@ -71,3 +71,24 @@ resetBtn.addEventListener("click", function () {
 equalBtn.addEventListener("click", function () {
   resolve();
 });
+
+deleteBtn.addEventListener("click", function () {
+  if (x !== "" && !currentOperator) {
+    xCurrentValue = x.toString();
+    x = parseInt(xCurrentValue.slice(0, -1));
+    output.innerText = x;
+  }
+  if (x && currentOperator) {
+    yCurrentValue = y.toString();
+    y = parseInt(yCurrentValue.slice(0, -1));
+    output.innerText = y;
+  }
+  if (!x) {
+    x = 0;
+    output.innerText = x;
+  }
+  if (!y && currentOperator) {
+    y = 0;
+    output.innerText = y;
+  }
+});
