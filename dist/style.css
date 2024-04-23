@@ -257,6 +257,9 @@ ul {
   box-shadow: 0px 3px var(--th1--clr--keyshadow2);
   color: var(--th1--clr--text2);
 }
+.container .hide {
+  display: none;
+}
 
 body {
   min-height: 100vh;
