@@ -12,38 +12,55 @@ let previousNum = "";
 let currentNum = "";
 let currentOperator = "";
 
+const reset = function () {
+  total = "";
+  previousNum = "";
+  currentNum = "";
+  currentOperator = "";
+  output.innerText = "0";
+};
+
+const resolve = function () {
+  try {
+    answer = eval(`${previousNum}${currentOperator}${currentNum}`);
+    previousNum = answer;
+    currentNum = "";
+    currentOperator = "";
+    previous.innerText = previousNum;
+    checkAlwaysTheValue();
+  } catch (e) {
+    currentNum = "";
+    currentOperator = "";
+    previous.innerText = "error";
+  }
+};
+
 const checkAlwaysTheValue = function () {
-  // If currentNum is empty, display 0
   if (previousNum === "") {
     previous.textContent = "0";
   }
-  // If previousNum is empty, hide previous display
-  if (currentNum === "") {
-    current.style.display = "none";
-  } else {
-    // Otherwise, show previous display
-    current.style.display = "block";
+
+  if (previousNum !== "") {
+    previous.textContent = previousNum;
   }
 
-  // If currentOperator is empty, hide operator display
+  if (currentNum === "") {
+    current.innerText = "";
+  }
   if (currentOperator === "") {
-    operator.style.display = "none";
-  } else {
-    // Otherwise, show operator display
-    operator.style.display = "block";
+    operator.innerText = "";
   }
 };
 
 allNums.forEach((num) => {
   num.addEventListener("click", function () {
-    checkAlwaysTheValue();
-    if (currentNum === "" || currentOperator === "") {
-      currentNum += num.innerText;
-      current.innerText = currentNum;
-    }
-    if (currentNum !== "" && currentOperator) {
+    if (previousNum === "" || currentOperator === "") {
       previousNum += num.innerText;
       previous.innerText = previousNum;
+    }
+    if (previousNum !== "" && currentOperator) {
+      currentNum += num.innerText;
+      current.innerText = currentNum;
     }
   });
 });
@@ -56,49 +73,15 @@ allOperators.forEach((operators) => {
   });
 });
 
-/* const resolve = function () {
-  if (x !== "" && y !== "") {
-    x = parseFloat(x);
-    y = parseFloat(y);
-    switch (currentOperator) {
-      case "+":
-        total = x + y;
-        break;
-      case "/":
-        total = x / y;
-        break;
-      case "-":
-        total = x - y;
-        break;
-      case "x":
-        total = x * y;
-        break;
-    }
-    y = "";
-    x = total;
-    output.innerText = total;
-  }
-};
-
-const reset = function () {
-  total = "";
-  x = "";
-  y = "";
-  currentOperator = "";
-  output.innerText = "0";
-};
-
-
+equalBtn.addEventListener("click", function () {
+  resolve();
+});
 
 resetBtn.addEventListener("click", function () {
   reset();
 });
 
-equalBtn.addEventListener("click", function () {
-  resolve();
-});
-
-deleteBtn.addEventListener("click", function () {
+/* deleteBtn.addEventListener("click", function () {
   if (x !== "" && !currentOperator) {
     xCurrentValue = x.toString();
     x = parseInt(xCurrentValue.slice(0, -1));
@@ -109,8 +92,4 @@ deleteBtn.addEventListener("click", function () {
     y = parseInt(yCurrentValue.slice(0, -1));
     output.innerText = y;
   }
-
-});
- */
-
-checkAlwaysTheValue();
+}); */
