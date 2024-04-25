@@ -1,95 +1,80 @@
-const previous = document.querySelector("#previousNum");
-const current = document.querySelector("#currentNum");
-const operator = document.querySelector("#currentOperator");
-const allNums = document.querySelectorAll("#nums");
-const allOperators = document.querySelectorAll("#operators");
-const equalBtn = document.querySelector("#equals");
-const deleteBtn = document.querySelector("#delete");
-const resetBtn = document.querySelector("#reset");
+const getElement = (selector) => document.querySelector(selector);
+const getAllElements = (selector) => document.querySelectorAll(selector);
+
+const previous = getElement("#previousNum");
+const current = getElement("#currentNum");
+const operator = getElement("#currentOperator");
+const allNums = getAllElements("#nums");
+const allOperators = getAllElements("#operators");
+const equalBtn = getElement("#equals");
+const deleteBtn = getElement("#delete");
+const resetBtn = getElement("#reset");
 
 let total = "'";
 let previousNum = "";
 let currentNum = "";
 let currentOperator = "";
 
-const reset = function () {
-  total = "";
-  previousNum = "";
-  currentNum = "";
-  currentOperator = "";
-  output.innerText = "0";
+const reset = () => {
+  [total, previousNum, currentNum, currentOperator] = ["", "", "", ""];
+  previous.innerText = "0";
 };
 
-const resolve = function () {
-  try {
-    answer = eval(`${previousNum}${currentOperator}${currentNum}`);
-    previousNum = answer;
-    currentNum = "";
-    currentOperator = "";
-    previous.innerText = previousNum;
-    checkAlwaysTheValue();
-  } catch (e) {
-    currentNum = "";
-    currentOperator = "";
-    previous.innerText = "error";
-  }
+const resolve = () => {
+  if (currentOperator === "x") currentOperator = "*";
+  const answer = eval(`${previousNum}${currentOperator}${currentNum}`);
+  [previousNum, currentNum, currentOperator] = [answer, "", ""];
+  previous.innerText = previousNum;
+  checkAlwaysTheValue();
 };
 
-const checkAlwaysTheValue = function () {
-  if (previousNum === "") {
-    previous.textContent = "0";
-  }
-
-  if (previousNum !== "") {
-    previous.textContent = previousNum;
-  }
-
-  if (currentNum === "") {
-    current.innerText = "";
-  }
-  if (currentOperator === "") {
-    operator.innerText = "";
-  }
+const checkAlwaysTheValue = () => {
+  previous.textContent = previousNum === "" ? "0" : previousNum;
+  current.innerText = currentNum === "" ? "" : currentNum;
+  operator.innerText = currentOperator === "" ? "" : currentOperator;
 };
 
-allNums.forEach((num) => {
-  num.addEventListener("click", function () {
-    if (previousNum === "" || currentOperator === "") {
-      previousNum += num.innerText;
-      previous.innerText = previousNum;
+allNums.forEach((num) =>
+  num.addEventListener("click", () => {
+    try {
+      if (!previousNum || !currentOperator) {
+        previousNum +=
+          num.innerText === "." ? (previousNum ? "" : "0.") : num.innerText;
+        previous.innerText = previousNum;
+      } else {
+        currentNum +=
+          num.innerText === "." ? (currentNum ? "" : "0.") : num.innerText;
+        current.innerText = currentNum;
+      }
+    } catch (e) {
+      alert("Error, Please click reset button");
+      console.log(e);
     }
-    if (previousNum !== "" && currentOperator) {
-      currentNum += num.innerText;
-      current.innerText = currentNum;
-    }
-  });
-});
+  })
+);
 
-allOperators.forEach((operators) => {
-  operators.addEventListener("click", function () {
+allOperators.forEach((operators) =>
+  operators.addEventListener("click", () => {
     checkAlwaysTheValue();
     currentOperator = operators.innerText;
     operator.innerText = currentOperator;
-  });
-});
+  })
+);
 
-equalBtn.addEventListener("click", function () {
-  resolve();
-});
+equalBtn.addEventListener("click", resolve);
 
-resetBtn.addEventListener("click", function () {
-  reset();
-});
+resetBtn.addEventListener("click", reset);
 
-/* deleteBtn.addEventListener("click", function () {
-  if (x !== "" && !currentOperator) {
-    xCurrentValue = x.toString();
-    x = parseInt(xCurrentValue.slice(0, -1));
-    output.innerText = x;
+deleteBtn.addEventListener("click", () => {
+  if (previousNum && !currentOperator) {
+    previousNum = parseInt(previousNum.toString().slice(0, -1));
+    previous.innerText = previousNum || "0";
   }
-  if (x && currentOperator) {
-    yCurrentValue = y.toString();
-    y = parseInt(yCurrentValue.slice(0, -1));
-    output.innerText = y;
+  if (previousNum && currentOperator) {
+    currentNum = parseInt(currentNum.toString().slice(0, -1));
+    current.innerText = currentNum || "0";
   }
-}); */
+  if (isNaN(previousNum)) [previousNum, previous.innerText] = ["", "0"];
+  if (isNaN(currentNum)) [currentNum, current.innerText] = ["", "0"];
+  checkAlwaysTheValue();
+});
