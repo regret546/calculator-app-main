@@ -8,4 +8,7 @@ body {
   font-size: 20px;
   background-color: var(--th1--clr--mainbg);
   color: var(--th1--clr--text2);
+
+  @media screen and (max-width: 350px) {
+  }
 }
