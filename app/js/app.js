@@ -1,10 +1,5 @@
-const getElement = function (selector) {
-  return document.querySelector(selector);
-};
-
-const getAllElements = function (selector) {
-  return document.querySelectorAll(selector);
-};
+const getElement = (selector) => document.querySelector(selector);
+const getAllElements = (selector) => document.querySelectorAll(selector);
 
 const previous = getElement("#previousNum");
 const current = getElement("#currentNum");
@@ -16,115 +11,101 @@ const deleteBtn = getElement("#delete");
 const resetBtn = getElement("#reset");
 
 let resolveIsActive = false;
-let total = "'";
-let previousNum = "";
-let currentNum = "";
+let total = 0;
+let previousNum = 0;
+let currentNum = 0;
 let currentOperator = "";
 
-const reset = function () {
-  total = "";
-  previousNum = "";
-  currentNum = "";
+const reset = () => {
+  total = 0;
+  previousNum = 0;
+  currentNum = 0;
   currentOperator = "";
-  previous.innerText = "0";
+  previous.textContent = "0";
   checkAlwaysTheValue();
 };
 
-const resolve = function () {
-  if (currentOperator === "x") {
-    currentOperator = "*";
-  }
-  const answer = eval(previousNum + currentOperator + currentNum);
+const resolve = () => {
+  if (currentOperator === "x") currentOperator = "*";
+
+  const answer = eval(`${previousNum} ${currentOperator} ${currentNum}`);
   if (answer === 0) {
-    previousNum = "";
-  } else if (answer.length > 16) {
-    alert("Maximum number reach, calculator will reset");
+    previousNum = 0;
+  } else if (answer.toString().length > 16) {
+    alert("Maximum number reached, calculator will reset");
     reset();
-    checkAlwaysTheValue();
     return;
   }
+
   resolveIsActive = true;
   previousNum = answer;
-  currentNum = "";
+  currentNum = 0;
   currentOperator = "";
-  previous.innerText = previousNum;
+  previous.textContent = previousNum;
   checkAlwaysTheValue();
 };
 
-const checkAlwaysTheValue = function () {
-  if (previousNum === "") {
-    previous.textContent = "0";
-  } else {
-    previous.textContent = previousNum;
-  }
-  if (currentNum === "") {
-    current.innerText = "";
-  } else {
-    current.innerText = currentNum;
-  }
-  if (currentOperator === "") {
-    operator.innerText = "";
-  } else {
-    operator.innerText = currentOperator;
-  }
-  if (previousNum.length > 7 || currentNum.length > 7) {
-    alert("Maximum number reach, calculator will reset");
+const checkAlwaysTheValue = () => {
+  previous.textContent = previousNum || "0";
+  current.textContent = currentNum || "";
+  operator.textContent = currentOperator || "";
+
+  if (previousNum.toString().length > 7 || currentNum.toString().length > 7) {
+    alert("Maximum number reached, calculator will reset");
     reset();
-    return;
   }
 };
 
 allNums.forEach((num) => {
-  num.addEventListener("click", function () {
+  num.addEventListener("click", () => {
     if (resolveIsActive && !currentOperator) {
       resolveIsActive = false;
       reset();
     }
 
-    if (previousNum === "" || currentOperator === "") {
-      previousNum += num.innerText;
-      previous.innerText = previousNum;
+    if (previousNum === 0 || currentOperator === "") {
+      previousNum = Number(`${previousNum}${num.textContent}`);
+      previous.textContent = previousNum;
     }
-    if (previousNum !== "" && currentOperator) {
-      currentNum += num.innerText;
-      current.innerText = currentNum;
+    if (previousNum !== 0 && currentOperator) {
+      currentNum = Number(`${currentNum}${num.textContent}`);
+      current.textContent = currentNum;
     }
     checkAlwaysTheValue();
   });
 });
 
-allOperators.forEach(function (operators) {
-  operators.addEventListener("click", function () {
+allOperators.forEach((operators) => {
+  operators.addEventListener("click", () => {
     checkAlwaysTheValue();
     if (currentOperator) {
-      alert("You can't assign morethan 1 operator!");
+      alert("You can't assign more than 1 operator!");
       return;
     }
-    currentOperator = operators.innerText;
-    operator.innerText = currentOperator;
+    currentOperator = operators.textContent;
+    operator.textContent = currentOperator;
   });
 });
 
 equalBtn.addEventListener("click", resolve);
-
 resetBtn.addEventListener("click", reset);
 
-deleteBtn.addEventListener("click", function () {
+deleteBtn.addEventListener("click", () => {
   if (previousNum && !currentOperator) {
-    previousNum = parseInt(previousNum.toString().slice(0, -1));
-    previous.innerText = previousNum || "0";
+    previousNum = parseInt(previousNum.toString().slice(0, -1)) || 0;
+    previous.textContent = previousNum;
   }
   if (previousNum && currentOperator) {
-    currentNum = parseInt(currentNum.toString().slice(0, -1));
-    current.innerText = currentNum || "0";
+    currentNum = parseInt(currentNum.toString().slice(0, -1)) || 0;
+    current.textContent = currentNum;
   }
   if (isNaN(previousNum)) {
-    previousNum = "";
-    previous.innerText = "0";
+    previousNum = 0;
+    previous.textContent = "0";
   }
   if (isNaN(currentNum)) {
-    currentNum = "";
-    current.innerText = "0";
+    currentNum = 0;
+    current.textContent = "0";
   }
   checkAlwaysTheValue();
 });
