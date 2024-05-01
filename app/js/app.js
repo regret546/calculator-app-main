@@ -15,6 +15,7 @@ const equalBtn = getElement("#equals");
 const deleteBtn = getElement("#delete");
 const resetBtn = getElement("#reset");
 
+let resolveIsActive = false;
 let total = "'";
 let previousNum = "";
 let currentNum = "";
@@ -26,6 +27,7 @@ const reset = function () {
   currentNum = "";
   currentOperator = "";
   previous.innerText = "0";
+  checkAlwaysTheValue();
 };
 
 const resolve = function () {
@@ -41,6 +43,7 @@ const resolve = function () {
     checkAlwaysTheValue();
     return;
   }
+  resolveIsActive = true;
   previousNum = answer;
   currentNum = "";
   currentOperator = "";
@@ -64,15 +67,20 @@ const checkAlwaysTheValue = function () {
   } else {
     operator.innerText = currentOperator;
   }
+  if (previousNum.length > 7 || currentNum.length > 7) {
+    alert("Maximum number reach, calculator will reset");
+    reset();
+    return;
+  }
 };
 
 allNums.forEach((num) => {
   num.addEventListener("click", function () {
-    if (previousNum.length > 7 || currentNum.length > 7) {
-      alert("Maximum number reach, calculator will reset");
+    if (resolveIsActive && !currentOperator) {
+      resolveIsActive = false;
       reset();
-      return;
     }
+
     if (previousNum === "" || currentOperator === "") {
       previousNum += num.innerText;
       previous.innerText = previousNum;

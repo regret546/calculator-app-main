@@ -279,6 +279,7 @@ body {
   background-color: var(--th1--clr--mainbg);
   color: var(--th1--clr--text2);
 }
+
 .main {
   background-color: var(--th2--clr--mainbg);
   color: var(--th2--clr--text1);
