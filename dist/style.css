@@ -206,13 +206,14 @@ ul {
   min-width: 230px;
   background-color: var(--th1--clr--screenbg);
   border-radius: 0.8rem;
-  padding: 1.5rem;
+  padding: 10px;
 }
 .container .app__section_output {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: 80px;
+  flex-wrap: wrap;
+  max-height: 80px;
 }
 .container .app__section_output p {
   margin-top: 5px;

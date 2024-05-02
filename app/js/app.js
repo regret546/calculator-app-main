@@ -27,17 +27,19 @@ const reset = function () {
   currentNum = "";
   currentOperator = "";
   previous.innerText = "0";
+  current.innerText = "";
+  operator.innerText = "";
 };
 
 const resolve = function () {
   if (currentOperator === "x") {
     currentOperator = "*";
   }
-  const answer = eval(previousNum + currentOperator + currentNum);
+  const answer = eval(previousNum + currentOperator + currentNum).toString();
   if (answer === 0) {
     previousNum = "";
   } else if (answer.length > 16) {
-    alert("Maximum number reach, calculator will reset");
+    alert("Answer reach maximun of numbers, calculator will reset");
     reset();
     checkAlwaysTheValue();
     return;
@@ -66,26 +68,39 @@ const checkAlwaysTheValue = function () {
   } else {
     operator.innerText = currentOperator;
   }
+  if (previousNum.length > 9 || currentNum.length > 9) {
+    alert("Maximum number reach, calculator will reset");
+    reset();
+    return;
+  }
 };
+
+function updateDisplay() {}
 
 allNums.forEach((num) => {
   num.addEventListener("click", function () {
     if (isFromResolve && !currentOperator) {
       reset();
       isFromResolve = false;
+    } else {
+      isFromResolve = false;
     }
-    if (previousNum.length > 7 || currentNum.length > 7) {
-      alert("Maximum number reach, calculator will reset");
-      reset();
-      return;
-    }
+
     if (previousNum === "" || currentOperator === "") {
-      previousNum += num.innerText;
-      previous.innerText = previousNum;
+      if (num.innerText === "." && previousNum.includes(".")) {
+        return;
+      } else {
+        previousNum += num.innerText;
+        previous.innerText = previousNum;
+      }
     }
     if (previousNum !== "" && currentOperator) {
-      currentNum += num.innerText;
-      current.innerText = currentNum;
+      if (num.innerText === "." && currentNum.includes(".")) {
+        return;
+      } else {
+        currentNum += num.innerText;
+        current.innerText = currentNum;
+      }
     }
     checkAlwaysTheValue();
   });
