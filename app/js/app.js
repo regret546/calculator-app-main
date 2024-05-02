@@ -15,6 +15,7 @@ const equalBtn = getElement("#equals");
 const deleteBtn = getElement("#delete");
 const resetBtn = getElement("#reset");
 
+let isFromResolve = false;
 let total = "'";
 let previousNum = "";
 let currentNum = "";
@@ -41,6 +42,7 @@ const resolve = function () {
     checkAlwaysTheValue();
     return;
   }
+  isFromResolve = true;
   previousNum = answer;
   currentNum = "";
   currentOperator = "";
@@ -68,6 +70,10 @@ const checkAlwaysTheValue = function () {
 
 allNums.forEach((num) => {
   num.addEventListener("click", function () {
+    if (isFromResolve && !currentOperator) {
+      reset();
+      isFromResolve = false;
+    }
     if (previousNum.length > 7 || currentNum.length > 7) {
       alert("Maximum number reach, calculator will reset");
       reset();
