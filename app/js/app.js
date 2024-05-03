@@ -48,20 +48,16 @@ const resolve = function () {
   previousNum = answer;
   currentNum = "";
   currentOperator = "";
-  previous.innerText = previousNum;
+  previous.innerText = getDisplayNumber(previousNum);
   checkAlwaysTheValue();
 };
 
 const checkAlwaysTheValue = function () {
   if (previousNum === "") {
     previous.textContent = "0";
-  } else {
-    previous.textContent = previousNum;
   }
   if (currentNum === "") {
     current.innerText = "";
-  } else {
-    current.innerText = currentNum;
   }
   if (currentOperator === "") {
     operator.innerText = "";
@@ -75,7 +71,24 @@ const checkAlwaysTheValue = function () {
   }
 };
 
-function updateDisplay() {}
+function getDisplayNumber(number) {
+  const stringNumber = number.toString();
+  const integerDigits = parseFloat(stringNumber.split(".")[0]);
+  const decimalDigits = parseFloat(stringNumber.split(".")[1]);
+  let intergerDisplay;
+  if (isNaN(integerDigits)) {
+    intergerDisplay = "";
+  } else {
+    intergerDisplay = integerDigits.toLocaleString("en", {
+      maximumFractionDigits: 0,
+    });
+  }
+  if (decimalDigits) {
+    return `${intergerDisplay}.${decimalDigits}`;
+  } else {
+    return intergerDisplay;
+  }
+}
 
 allNums.forEach((num) => {
   num.addEventListener("click", function () {
@@ -91,7 +104,7 @@ allNums.forEach((num) => {
         return;
       } else {
         previousNum += num.innerText;
-        previous.innerText = previousNum;
+        previous.innerText = getDisplayNumber(previousNum);
       }
     }
     if (previousNum !== "" && currentOperator) {
@@ -99,7 +112,7 @@ allNums.forEach((num) => {
         return;
       } else {
         currentNum += num.innerText;
-        current.innerText = currentNum;
+        current.innerText = getDisplayNumber(currentNum);
       }
     }
     checkAlwaysTheValue();
@@ -131,13 +144,9 @@ deleteBtn.addEventListener("click", function () {
     currentNum = parseInt(currentNum.toString().slice(0, -1));
     current.innerText = currentNum || "0";
   }
-  if (isNaN(previousNum)) {
-    previousNum = "";
-    previous.innerText = "0";
-  }
-  if (isNaN(currentNum)) {
+  if (isNaN(previousNum) || isNaN(currentNum)) {
+    previousNum = 0;
     currentNum = "";
-    current.innerText = "0";
   }
   checkAlwaysTheValue();
 });
