@@ -38,7 +38,7 @@ const resolve = function () {
   const answer = eval(previousNum + currentOperator + currentNum).toString();
   if (answer === 0) {
     previousNum = "";
-  } else if (answer.length > 16) {
+  } else if (answer.length > 50) {
     alert("Answer reach maximun of numbers, calculator will reset");
     reset();
     checkAlwaysTheValue();
@@ -59,15 +59,11 @@ const checkAlwaysTheValue = function () {
   if (currentNum === "") {
     current.innerText = "";
   }
+
   if (currentOperator === "") {
     operator.innerText = "";
   } else {
     operator.innerText = currentOperator;
-  }
-  if (previousNum.length > 9 || currentNum.length > 9) {
-    alert("Maximum number reach, calculator will reset");
-    reset();
-    return;
   }
 };
 
@@ -75,6 +71,7 @@ function getDisplayNumber(number) {
   const stringNumber = number.toString();
   const integerDigits = parseFloat(stringNumber.split(".")[0]);
   const decimalDigits = parseFloat(stringNumber.split(".")[1]);
+  let finalDecimalDigitsNumber = String(decimalDigits).substring(0, 5);
   let intergerDisplay;
   if (isNaN(integerDigits)) {
     intergerDisplay = "";
@@ -84,7 +81,9 @@ function getDisplayNumber(number) {
     });
   }
   if (decimalDigits) {
-    return `${intergerDisplay}.${decimalDigits}`;
+    return `${intergerDisplay}.${finalDecimalDigitsNumber}`;
+  } else if (number.includes(".") && !decimalDigits) {
+    return `${intergerDisplay}.`;
   } else {
     return intergerDisplay;
   }
