@@ -143,13 +143,25 @@
     display: none;
   }
 
-  @media screen and (max-width: 350px) {
+  @media screen and (max-width: 375px) {
     .app__section {
+      &_output,
+      &_functions {
+        padding: 20px;
+      }
+
+      &_output {
+        padding: 10px;
+
+        p {
+          font-size: 1.8rem;
+        }
+      }
       &_functions {
         ul {
           li {
             height: 45px;
-            width: 15%;
+            width: 18%;
             font-size: 1.8rem;
           }
         }

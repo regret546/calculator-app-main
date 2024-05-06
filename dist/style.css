@@ -271,10 +271,19 @@ ul {
 .container .hide {
   display: none;
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 375px) {
+  .container .app__section_output, .container .app__section_functions {
+    padding: 20px;
+  }
+  .container .app__section_output {
+    padding: 10px;
+  }
+  .container .app__section_output p {
+    font-size: 1.8rem;
+  }
   .container .app__section_functions ul li {
     height: 45px;
-    width: 15%;
+    width: 18%;
     font-size: 1.8rem;
   }
 }
