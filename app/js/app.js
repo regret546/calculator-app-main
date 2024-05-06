@@ -23,8 +23,8 @@ let currentOperator = "";
 
 const reset = function () {
   total = "";
-  previousNum = "";
-  currentNum = "";
+  previousNum = 0;
+  currentNum = 0;
   currentOperator = "";
   previous.innerText = "0";
   current.innerText = "";
@@ -143,9 +143,14 @@ deleteBtn.addEventListener("click", function () {
     currentNum = parseInt(currentNum.toString().slice(0, -1));
     current.innerText = currentNum || "0";
   }
-  if (isNaN(previousNum) || isNaN(currentNum)) {
+
+  if (isNaN(previousNum)) {
     previousNum = 0;
-    currentNum = "";
   }
+
+  if (isNaN(currentNum)) {
+    currentNum = 0;
+  }
+
   checkAlwaysTheValue();
 });
