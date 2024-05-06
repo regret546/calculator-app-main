@@ -206,7 +206,10 @@ ul {
   min-width: 230px;
   background-color: var(--th1--clr--screenbg);
   border-radius: 0.8rem;
-  padding: 10px;
+  padding: 1rem;
+}
+.container .app__section_functions {
+  padding: 2rem;
 }
 .container .app__section_output {
   display: flex;

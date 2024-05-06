@@ -71,7 +71,10 @@
       min-width: 230px;
       background-color: var(--th1--clr--screenbg);
       border-radius: 0.8rem;
-      padding: 10px;
+      padding: 1rem;
+    }
+    &_functions {
+      padding: 2rem;
     }
     &_output {
       display: flex;
