@@ -36,15 +36,13 @@ const resolve = function () {
     currentOperator = "*";
   }
   const answer = eval(previousNum + currentOperator + currentNum).toString();
+
   if (answer === 0) {
     previousNum = "";
-  } else if (answer.length > 50) {
-    alert("Answer reach maximun of numbers, calculator will reset");
-    reset();
-    checkAlwaysTheValue();
-    return;
   }
+
   isFromResolve = true;
+
   previousNum = answer;
   currentNum = "";
   currentOperator = "";
@@ -148,11 +146,11 @@ resetBtn.addEventListener("click", reset);
 
 deleteBtn.addEventListener("click", function () {
   if (previousNum && !currentOperator) {
-    previousNum = parseInt(previousNum.toString().slice(0, -1));
+    previousNum = parseFloat(previousNum.toString().slice(0, -1));
     previous.innerText = previousNum || "0";
   }
   if (previousNum && currentOperator) {
-    currentNum = parseInt(currentNum.toString().slice(0, -1));
+    currentNum = parseFloat(currentNum.toString().slice(0, -1));
     current.innerText = currentNum || "0";
   }
 
