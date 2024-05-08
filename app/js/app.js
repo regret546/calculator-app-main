@@ -99,6 +99,12 @@ allNums.forEach((num) => {
     }
 
     if (previousNum === "" || currentOperator === "") {
+      if (previousNum.length > 12) {
+        alert("Current value reach maximun of numbers, calculator will reset");
+        reset();
+        checkAlwaysTheValue();
+        return;
+      }
       if (num.innerText === "." && previousNum.includes(".")) {
         return;
       } else {
@@ -107,6 +113,12 @@ allNums.forEach((num) => {
       }
     }
     if (previousNum !== "" && currentOperator) {
+      if (currentNum.length > 12) {
+        alert("Current value reach maximun of numbers, calculator will reset");
+        reset();
+        checkAlwaysTheValue();
+        return;
+      }
       if (num.innerText === "." && currentNum.includes(".")) {
         return;
       } else {
